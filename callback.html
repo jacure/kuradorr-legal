@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Completing sign-in…</title>
+</head>
+<body>
+<p>Completing sign-in, please wait…</p>
+<script>
+  // TikTok redirects here after authorization with ?code=...&state=... in the query string.
+  // Forward those params to Composio's OAuth callback endpoint to complete the connection.
+  var target = "https://backend.composio.dev/api/v1/auth-apps/add" + window.location.search;
+  window.location.replace(target);
+</script>
+</body>
+</html>
