@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kuradorr Content Manager — App</title>
+<style>
+:root{
+  --bg:#0a0d0f;
+  --panel:#10161a;
+  --panel-raised:#141c21;
+  --border:#1f2a2f;
+  --text:#dbe4e6;
+  --text-dim:#8fa1a6;
+  --text-faint:#5c6f74;
+  --accent:#34d7cd;
+  --accent-dim:#1f8f89;
+  --accent-ink:#04201d;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="light"]){
+    --bg:#f4f7f7;
+    --panel:#ffffff;
+    --panel-raised:#eef3f3;
+    --border:#d9e2e3;
+    --text:#101819;
+    --text-dim:#4d6266;
+    --text-faint:#7d9195;
+    --accent:#0c8a83;
+    --accent-dim:#0a726c;
+    --accent-ink:#e6faf8;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#f4f7f7;
+  --panel:#ffffff;
+  --panel-raised:#eef3f3;
+  --border:#d9e2e3;
+  --text:#101819;
+  --text-dim:#4d6266;
+  --text-faint:#7d9195;
+  --accent:#0c8a83;
+  --accent-dim:#0a726c;
+  --accent-ink:#e6faf8;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Public Sans","IBM Plex Sans",-apple-system,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:2rem 1.5rem;
+}
+.meta-label{
+  font-family:"JetBrains Mono","IBM Plex Mono",monospace;
+  font-size:0.72rem;
+  letter-spacing:0.11em;
+  text-transform:uppercase;
+  color:var(--text-faint);
+}
+.card{
+  max-width:26rem;
+  width:100%;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:2.25rem 2rem;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+  margin-bottom:1.75rem;
+}
+.brand .dot{
+  width:9px;height:9px;border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+  flex:none;
+}
+.brand span{
+  font-family:"Archivo",sans-serif;
+  font-weight:700;
+  font-size:0.95rem;
+}
+h1{
+  font-family:"Archivo",sans-serif;
+  font-weight:700;
+  font-size:1.5rem;
+  line-height:1.2;
+  margin:0 0 0.75rem;
+}
+p{ color:var(--text-dim); margin:0 0 1.5rem; font-size:0.94rem; }
+.scopes{
+  list-style:none;
+  padding:0;
+  margin:0 0 1.75rem;
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+}
+.scopes li{
+  font-family:"JetBrains Mono","IBM Plex Mono",monospace;
+  font-size:0.78rem;
+  color:var(--text-dim);
+  background:var(--panel-raised);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:0.5rem 0.7rem;
+}
+.scopes li b{ color:var(--accent); font-weight:500; }
+.btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0.6rem;
+  width:100%;
+  padding:0.85rem 1rem;
+  background:var(--accent);
+  color:var(--accent-ink);
+  font-weight:700;
+  font-size:0.95rem;
+  border:none;
+  border-radius:8px;
+  text-decoration:none;
+  cursor:pointer;
+  transition:opacity .15s;
+}
+.btn:hover{ opacity:0.88; }
+footer{
+  margin-top:1.5rem;
+  text-align:center;
+  font-size:0.8rem;
+  color:var(--text-faint);
+}
+footer a{ color:var(--text-dim); }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+</head>
+<body>
+<div class="card">
+  <div class="brand"><span class="dot"></span><span>Kuradorr Content Manager</span></div>
+  <h1>Conecta tu cuenta de TikTok</h1>
+  <p>Autoriza el acceso para que el panel privado pueda leer tus estadísticas y vídeos, y publicar clips que tú apruebes.</p>
+  <ul class="scopes">
+    <li><b>user.info.basic</b> — identificar tu cuenta</li>
+    <li><b>user.info.profile</b> — nombre, bio, enlaces</li>
+    <li><b>user.info.stats</b> — seguidores, likes, vídeos</li>
+    <li><b>video.list</b> — tus vídeos publicados y sus métricas</li>
+    <li><b>video.upload</b> — publicar clips como borrador (SELF_ONLY)</li>
+  </ul>
+  <a class="btn" id="connectBtn" href="#">Conectar con TikTok</a>
+  <footer>
+    Al conectar aceptas los <a href="../#terminos">Términos de Servicio</a> y la <a href="../#privacidad">Política de Privacidad</a>.
+  </footer>
+</div>
+<script>
+  var CLIENT_KEY = "aw4giy37hcn2cqs7";
+  var REDIRECT_URI = "https://jacure.github.io/kuradorr-legal/callback.html";
+  var SCOPES = ["user.info.basic","user.info.profile","user.info.stats","video.list","video.upload"].join(",");
+
+  function randomState(){
+    var arr = new Uint8Array(16);
+    crypto.getRandomValues(arr);
+    return Array.from(arr, function(b){ return b.toString(16).padStart(2,"0"); }).join("");
+  }
+
+  var state = randomState();
+  try { sessionStorage.setItem("kuradorr_oauth_state", state); } catch(e) {}
+
+  var authUrl = "https://www.tiktok.com/v2/auth/authorize/"
+    + "?client_key=" + encodeURIComponent(CLIENT_KEY)
+    + "&scope=" + encodeURIComponent(SCOPES)
+    + "&response_type=code"
+    + "&redirect_uri=" + encodeURIComponent(REDIRECT_URI)
+    + "&state=" + encodeURIComponent(state);
+
+  document.getElementById("connectBtn").href = authUrl;
+</script>
+</body>
+</html>
