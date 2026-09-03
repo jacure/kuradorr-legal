@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kuradorr Content Manager — Legal</title>
+<style>
+:root{
+  --bg:#0a0d0f;
+  --panel:#10161a;
+  --panel-raised:#141c21;
+  --border:#1f2a2f;
+  --text:#dbe4e6;
+  --text-dim:#8fa1a6;
+  --text-faint:#5c6f74;
+  --accent:#34d7cd;
+  --accent-dim:#1f8f89;
+  --accent-ink:#04201d;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="light"]){
+    --bg:#f4f7f7;
+    --panel:#ffffff;
+    --panel-raised:#eef3f3;
+    --border:#d9e2e3;
+    --text:#101819;
+    --text-dim:#4d6266;
+    --text-faint:#7d9195;
+    --accent:#0c8a83;
+    --accent-dim:#0a726c;
+    --accent-ink:#e6faf8;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#f4f7f7;
+  --panel:#ffffff;
+  --panel-raised:#eef3f3;
+  --border:#d9e2e3;
+  --text:#101819;
+  --text-dim:#4d6266;
+  --text-faint:#7d9195;
+  --accent:#0c8a83;
+  --accent-dim:#0a726c;
+  --accent-ink:#e6faf8;
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Public Sans","IBM Plex Sans",-apple-system,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+}
+
+.meta-label{
+  font-family:"JetBrains Mono","IBM Plex Mono",monospace;
+  font-size:0.72rem;
+  letter-spacing:0.11em;
+  text-transform:uppercase;
+  color:var(--text-faint);
+}
+
+/* ---------- Top bar ---------- */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:0.85rem 1.5rem;
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  flex-wrap:wrap;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+  font-family:"Archivo",sans-serif;
+  font-weight:700;
+  font-size:0.95rem;
+  letter-spacing:0.02em;
+}
+.brand .dot{
+  width:9px;height:9px;border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+  flex:none;
+}
+.brand small{
+  display:block;
+  font-family:"JetBrains Mono","IBM Plex Mono",monospace;
+  font-weight:400;
+  font-size:0.68rem;
+  letter-spacing:0.08em;
+  color:var(--text-faint);
+  text-transform:uppercase;
+}
+.tabs{
+  display:flex;
+  gap:0.35rem;
+  font-family:"JetBrains Mono","IBM Plex Mono",monospace;
+  font-size:0.75rem;
+  letter-spacing:0.04em;
+}
+.tabs a{
+  color:var(--text-dim);
+  text-decoration:none;
+  padding:0.4rem 0.75rem;
+  border-radius:5px;
+  border:1px solid transparent;
+  transition:border-color .15s, color .15s, background .15s;
+}
+.tabs a:hover{ color:var(--text); border-color:var(--border); background:var(--panel-raised); }
+
+/* ---------- Layout ---------- */
+.wrap{
+  max-width:44rem;
+  margin:0 auto;
+  padding:2.75rem 1.5rem 6rem;
+}
+.doc-head{
+  margin-bottom:3rem;
+}
+.doc-head .meta-label{ margin-bottom:0.9rem; }
+.doc-head h1{
+  font-family:"Archivo",sans-serif;
+  font-weight:700;
+  font-size:clamp(1.9rem, 4vw, 2.5rem);
+  line-height:1.12;
+  letter-spacing:-0.01em;
+  margin:0 0 0.6rem;
+  text-wrap:balance;
+}
+.doc-head p{
+  color:var(--text-dim);
+  max-width:38rem;
+  margin:0;
+}
+.doc-facts{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(11rem,1fr));
+  gap:0.75rem;
+  margin-top:1.5rem;
+  padding-top:1.5rem;
+  border-top:1px solid var(--border);
+}
+.doc-facts div{ display:flex; flex-direction:column; gap:0.25rem; }
+.doc-facts span:last-child{ color:var(--text); font-size:0.92rem; }
+
+section.doc{
+  scroll-margin-top:4.5rem;
+  padding-top:1rem;
+}
+section.doc + section.doc{
+  margin-top:3.5rem;
+  padding-top:3rem;
+  border-top:1px solid var(--border);
+}
+
+h2.doc-title{
+  font-family:"Archivo",sans-serif;
+  font-size:1.5rem;
+  font-weight:700;
+  margin:0 0 2rem;
+  padding-bottom:1rem;
+  border-bottom:2px solid var(--accent);
+  display:inline-block;
+}
+
+article h3{
+  font-family:"Archivo",sans-serif;
+  font-size:1.02rem;
+  font-weight:700;
+  margin:2.1rem 0 0.7rem;
+  display:flex;
+  align-items:baseline;
+  gap:0.6rem;
+}
+article h3 .num{
+  font-family:"JetBrains Mono","IBM Plex Mono",monospace;
+  font-size:0.82rem;
+  color:var(--accent);
+  font-weight:500;
+}
+article p{ margin:0 0 0.9rem; color:var(--text); }
+article p.dim{ color:var(--text-dim); font-size:0.94rem; }
+article ul{ margin:0 0 0.9rem; padding-left:1.2rem; }
+article li{ margin-bottom:0.4rem; }
+article a{ color:var(--accent); }
+
+.scope-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:0.5rem 0 1.4rem;
+  font-size:0.88rem;
+}
+.scope-table-wrap{ overflow-x:auto; }
+.scope-table th, .scope-table td{
+  text-align:left;
+  padding:0.65rem 0.8rem;
+  border-bottom:1px solid var(--border);
+  vertical-align:top;
+}
+.scope-table th{
+  font-family:"JetBrains Mono","IBM Plex Mono",monospace;
+  font-size:0.68rem;
+  letter-spacing:0.07em;
+  text-transform:uppercase;
+  color:var(--text-faint);
+  font-weight:500;
+}
+.scope-table td:first-child{
+  font-family:"JetBrains Mono","IBM Plex Mono",monospace;
+  font-size:0.82rem;
+  color:var(--accent);
+  white-space:nowrap;
+}
+
+.callout{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-left:3px solid var(--accent);
+  border-radius:0 8px 8px 0;
+  padding:1rem 1.15rem;
+  margin:1.3rem 0;
+  font-size:0.92rem;
+  color:var(--text-dim);
+}
+.callout strong{ color:var(--text); }
+
+footer{
+  max-width:44rem;
+  margin:0 auto;
+  padding:2rem 1.5rem 3rem;
+  color:var(--text-faint);
+  font-size:0.82rem;
+  border-top:1px solid var(--border);
+}
+footer a{ color:var(--text-dim); }
+
+@media (max-width:640px){
+  .topbar{ padding:0.75rem 1.1rem; }
+  .wrap{ padding:2rem 1.1rem 4rem; }
+}
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+
+</head>
+<body>
+<div class="topbar">
+  <div class="brand">
+    <span class="dot"></span>
+    <div>
+      Kuradorr Content Manager
+      <small>Documentación legal de la app</small>
+    </div>
+  </div>
+  <nav class="tabs">
+    <a href="#privacidad">Política de Privacidad</a>
+    <a href="#terminos">Términos de Servicio</a>
+  </nav>
+</div>
+
+<div class="wrap">
+
+  <div class="doc-head">
+    <div class="meta-label">Kuradorr Content Manager · Documento legal</div>
+    <h1>Privacidad y Términos de Servicio</h1>
+    <p>Esta página cubre la Política de Privacidad y los Términos de Servicio de <strong>Kuradorr Content Manager</strong>, la herramienta interna que usa Juan («Kuradorr») para gestionar su propio contenido y estadísticas en TikTok, Instagram y YouTube.</p>
+    <div class="doc-facts">
+      <div><span class="meta-label">Titular</span><span>Juan («Kuradorr»), Vitoria-Gasteiz</span></div>
+      <div><span class="meta-label">Uso de la app</span><span>Personal · un único usuario</span></div>
+      <div><span class="meta-label">Última actualización</span><span>2 de septiembre de 2026</span></div>
+      <div><span class="meta-label">Contacto</span><span><a href="mailto:jacure@gmail.com" style="color:var(--accent)">jacure@gmail.com</a></span></div>
+    </div>
+  </div>
+
+  <section class="doc" id="privacidad">
+    <h2 class="doc-title">Política de Privacidad</h2>
+    <article>
+
+      <h3><span class="num">1</span>Qué es esta app</h3>
+      <p>Kuradorr Content Manager es una herramienta de uso <strong>estrictamente personal</strong>, operada por su único usuario y propietario, Juan («Kuradorr»), para gestionar el contenido y analizar el rendimiento de su propia cuenta de TikTok (<code>@kuradorr</code>), así como de sus cuentas de Instagram y YouTube. No es un servicio público ni está disponible para que terceros la instalen o conecten sus propias cuentas.</p>
+
+      <h3><span class="num">2</span>Qué datos accedemos y para qué</h3>
+      <p class="dim">La app solicita acceso a la API de TikTok mediante los siguientes scopes, y solo a la cuenta de su propietario:</p>
+      <div class="scope-table-wrap">
+        <table class="scope-table">
+          <thead><tr><th>Scope</th><th>Qué datos incluye</th><th>Para qué se usa</th></tr></thead>
+          <tbody>
+            <tr><td>user.info.basic</td><td>Identificador de cuenta (open_id/union_id)</td><td>Confirmar que la cuenta conectada es la correcta</td></tr>
+            <tr><td>user.info.profile</td><td>Nombre de usuario, biografía, estado de verificación</td><td>Referencia de perfil dentro del panel de marketing</td></tr>
+            <tr><td>user.info.stats</td><td>Seguidores, seguidos, likes totales, nº de vídeos</td><td>Seguimiento de crecimiento e informes semanales de rendimiento</td></tr>
+            <tr><td>video.list</td><td>Vídeos públicos propios y sus métricas (vistas, likes, comentarios, shares)</td><td>Analizar qué contenido funciona mejor</td></tr>
+            <tr><td>video.upload</td><td>Capacidad de subir un vídeo a la cuenta como borrador</td><td>Publicar contenido que el propietario ha preparado y aprobado (siempre como borrador privado, SELF_ONLY)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3><span class="num">3</span>Cómo se procesan los datos</h3>
+      <p>La app no aloja los datos de TikTok en un servidor propio permanente. La autenticación OAuth y las llamadas a la API se realizan a través de <strong>Composio</strong>, la infraestructura técnica que gestiona la conexión, y son ejecutadas bajo instrucción directa del propietario a través de un asistente de IA (Claude, de Anthropic) que actúa únicamente dentro de esta cuenta.</p>
+
+      <h3><span class="num">4</span>No se comparte con terceros</h3>
+      <p>Los datos no se venden, ceden ni comparten con anunciantes ni con ningún tercero ajeno a los proveedores técnicos necesarios para operar la app (Composio y Anthropic). No se usan con fines distintos a la gestión y análisis de la propia cuenta del titular.</p>
+
+      <div class="callout"><strong>Sin recogida de datos de otros usuarios.</strong> Esta app nunca accede a cuentas de TikTok distintas de la del propietario, ni recopila datos de sus seguidores, comentaristas o de otras personas.</div>
+
+      <h3><span class="num">5</span>Conservación y eliminación</h3>
+      <p>Las métricas consultadas se usan de forma puntual para generar análisis e informes; no se mantiene una base de datos histórica independiente fuera de la propia plataforma de TikTok. El propietario puede revocar el acceso en cualquier momento desde los ajustes de la app en TikTok o desde el panel de conexiones de Composio, lo que elimina de inmediato la capacidad de acceso.</p>
+
+      <h3><span class="num">6</span>Cambios en esta política</h3>
+      <p>Si esta política cambia de forma relevante, la fecha de «Última actualización» en la cabecera de esta página se actualizará en consecuencia.</p>
+
+      <h3><span class="num">7</span>Contacto</h3>
+      <p>Para cualquier pregunta sobre esta política, contactar en <a href="mailto:jacure@gmail.com">jacure@gmail.com</a>.</p>
+
+    </article>
+  </section>
+
+  <section class="doc" id="terminos">
+    <h2 class="doc-title">Términos de Servicio</h2>
+    <article>
+
+      <h3><span class="num">1</span>Aceptación</h3>
+      <p>Al conectar la cuenta de TikTok <code>@kuradorr</code> a esta app, su propietario acepta estos términos. Al ser una app de uso estrictamente personal, no se ofrece a ni se dirige a ningún otro usuario.</p>
+
+      <h3><span class="num">2</span>Descripción del servicio</h3>
+      <p>Kuradorr Content Manager es una herramienta interna de marketing y gestión de marca personal que permite: (a) consultar estadísticas y vídeos publicados en TikTok, Instagram y YouTube; y (b) publicar contenido de vídeo preparado por el propietario, siempre bajo su revisión y aprobación previa antes de cualquier publicación.</p>
+
+      <h3><span class="num">3</span>Uso permitido</h3>
+      <p>El uso de esta app está limitado en exclusiva a su propietario, Juan («Kuradorr»), para la gestión de sus propias cuentas. Ninguna otra persona está autorizada a conectar cuentas de terceros a esta app.</p>
+
+      <h3><span class="num">4</span>Responsabilidad del contenido</h3>
+      <p>El propietario es el único responsable del contenido que decide publicar a través de esta app, incluyendo el cumplimiento de las normas comunitarias y políticas de contenido de TikTok, Instagram y YouTube.</p>
+
+      <h3><span class="num">5</span>Disponibilidad</h3>
+      <p>La app depende de la disponibilidad de las APIs de TikTok, Instagram y YouTube, así como de la infraestructura de Composio y Anthropic. El servicio puede interrumpirse o modificarse sin previo aviso al ser una herramienta de uso personal en desarrollo continuo.</p>
+
+      <h3><span class="num">6</span>Limitación de responsabilidad</h3>
+      <p>Esta app se ofrece «tal cual», sin garantías de ningún tipo. El propietario asume la responsabilidad de revisar cualquier contenido antes de su publicación.</p>
+
+      <h3><span class="num">7</span>Ley aplicable</h3>
+      <p>Estos términos se rigen por la legislación española.</p>
+
+      <h3><span class="num">8</span>Contacto</h3>
+      <p>Para cualquier pregunta sobre estos términos, contactar en <a href="mailto:jacure@gmail.com">jacure@gmail.com</a>.</p>
+
+    </article>
+  </section>
+
+</div>
+
+<footer>
+  Documento de referencia para el registro de la app «Kuradorr Content Manager» en TikTok for Developers. Plantilla básica para una app de uso personal y de un único usuario — no sustituye asesoría legal profesional si la app cambia de alcance en el futuro.
+</footer>
+
+</body>
+</html>
