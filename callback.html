@@ -1,16 +1,87 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Completing sign-in…</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kuradorr Content Manager — Conectando</title>
+<style>
+:root{
+  --bg:#0a0d0f;
+  --panel:#10161a;
+  --border:#1f2a2f;
+  --text:#dbe4e6;
+  --text-dim:#8fa1a6;
+  --accent:#34d7cd;
+  --accent-ink:#04201d;
+  --danger:#e05a5a;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="light"]){
+    --bg:#f4f7f7; --panel:#ffffff; --border:#d9e2e3; --text:#101819; --text-dim:#4d6266; --accent:#0c8a83; --accent-ink:#e6faf8;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#f4f7f7; --panel:#ffffff; --border:#d9e2e3; --text:#101819; --text-dim:#4d6266; --accent:#0c8a83; --accent-ink:#e6faf8;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; min-height:100vh; background:var(--bg); color:var(--text);
+  font-family:"Public Sans","IBM Plex Sans",-apple-system,sans-serif;
+  display:flex; align-items:center; justify-content:center; padding:2rem 1.5rem;
+}
+.card{ max-width:24rem; width:100%; background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:2.25rem 2rem; text-align:center; }
+.icon{ width:48px; height:48px; margin:0 auto 1.25rem; border-radius:50%; background:var(--accent); color:var(--accent-ink); display:flex; align-items:center; justify-content:center; font-size:1.5rem; font-weight:700; }
+.icon.err{ background:var(--danger); color:#fff; }
+h1{ font-family:"Archivo",sans-serif; font-size:1.25rem; margin:0 0 0.5rem; }
+p{ color:var(--text-dim); font-size:0.92rem; margin:0; }
+.spinner{ margin-top:1.5rem; font-family:"JetBrains Mono",monospace; font-size:0.75rem; color:var(--text-dim); }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=Public+Sans:wght@400;500&display=swap">
 </head>
 <body>
-<p>Completing sign-in, please wait…</p>
+<div class="card" id="card">
+  <div class="icon" id="icon">…</div>
+  <h1 id="title">Procesando…</h1>
+  <p id="message">Un momento.</p>
+  <div class="spinner" id="spinner"></div>
+</div>
 <script>
-  // TikTok redirects here after authorization with ?code=...&state=... in the query string.
-  // Forward those params to Composio's OAuth callback endpoint to complete the connection.
-  var target = "https://backend.composio.dev/api/v1/auth-apps/add" + window.location.search;
-  window.location.replace(target);
+  var params = new URLSearchParams(window.location.search);
+  var code = params.get("code");
+  var state = params.get("state");
+  var error = params.get("error");
+  var errorDescription = params.get("error_description");
+
+  var iconEl = document.getElementById("icon");
+  var titleEl = document.getElementById("title");
+  var messageEl = document.getElementById("message");
+  var spinnerEl = document.getElementById("spinner");
+
+  if (error) {
+    iconEl.className = "icon err";
+    iconEl.textContent = "!";
+    titleEl.textContent = "No se pudo conectar";
+    messageEl.textContent = errorDescription || error;
+  } else if (code) {
+    var savedState = null;
+    try { savedState = sessionStorage.getItem("kuradorr_oauth_state"); } catch(e) {}
+
+    iconEl.textContent = "✓";
+    titleEl.textContent = "Cuenta conectada";
+    messageEl.textContent = "Autorización recibida. Completando la conexión…";
+    spinnerEl.textContent = "Redirigiendo…";
+
+    setTimeout(function () {
+      var target = "https://backend.composio.dev/api/v1/auth-apps/add" + window.location.search;
+      window.location.replace(target);
+    }, 1200);
+  } else {
+    iconEl.className = "icon err";
+    iconEl.textContent = "!";
+    titleEl.textContent = "Falta el código de autorización";
+    messageEl.textContent = "TikTok no envió un código válido en la redirección.";
+  }
 </script>
 </body>
 </html>
