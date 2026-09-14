@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kuradorr Content Manager</title>
+<style>
+  :root{
+    --bg:#0a0d0f; --panel:#10161a; --border:#1f2a2f;
+    --text:#dbe4e6; --text-dim:#8fa1a6; --text-faint:#5c6f74;
+    --accent:#34d7cd;
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --bg:#f6f8f8; --panel:#ffffff; --border:#dde5e6;
+      --text:#101819; --text-dim:#4d6266; --text-faint:#7d9195;
+      --accent:#0c8a83;
+    }
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Public Sans","IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:16px; line-height:1.65;
+  }
+  .wrap{ max-width:42rem; margin:0 auto; padding:3.5rem 1.5rem 5rem; }
+  header{ margin-bottom:2.5rem; }
+  .eyebrow{
+    font-family:"JetBrains Mono","IBM Plex Mono",monospace; font-size:0.72rem;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:0.6rem;
+  }
+  h1{ font-size:2rem; font-weight:700; margin:0 0 0.5rem; letter-spacing:-0.01em; }
+  .subtitle{ color:var(--text-dim); font-size:1.05rem; margin:0; }
+  h2{ font-size:1.15rem; font-weight:700; margin:2.6rem 0 0.9rem; }
+  p{ margin:0 0 1rem; color:var(--text); }
+  ul{ margin:0 0 1rem; padding-left:1.2rem; }
+  li{ margin-bottom:0.6rem; }
+  .card{
+    background:var(--panel); border:1px solid var(--border); border-radius:10px;
+    padding:1.3rem 1.4rem; margin:1.2rem 0;
+  }
+  .meta{ display:flex; flex-wrap:wrap; gap:0.5rem 1.4rem; margin:0.8rem 0 0; font-size:0.9rem; color:var(--text-dim); }
+  .meta span b{ color:var(--text); font-weight:600; }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  footer{
+    margin-top:3.5rem; padding-top:1.6rem; border-top:1px solid var(--border);
+    font-size:0.85rem; color:var(--text-faint);
+  }
+  footer a{ color:var(--text-dim); }
+  footer .links{ margin-top:0.5rem; }
+  footer .links a{ margin-right:1.2rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Herramienta de uso personal</div>
+    <h1>Kuradorr Content Manager</h1>
+    <p class="subtitle">Gestión interna de contenido y estadísticas para el proyecto de DJ Kuradorr.</p>
+  </header>
+
+  <section>
+    <h2>Qué es esta aplicación</h2>
+    <p>
+      Kuradorr Content Manager es una herramienta de <strong>uso estrictamente personal</strong>,
+      desarrollada y operada por Juan A. (Vitoria-Gasteiz, España) para gestionar su propio proyecto
+      de DJ bajo el alias <strong>Kuradorr</strong>. Mediante las APIs oficiales de YouTube, Instagram
+      y TikTok, la aplicación se conecta únicamente a las cuentas personales del propio desarrollador
+      (<a href="https://tiktok.com/@kuradorr" target="_blank" rel="noopener">@kuradorr</a> en las tres
+      plataformas) para centralizar sus estadísticas de rendimiento y gestionar la publicación de
+      contenido propio.
+    </p>
+    <p>
+      No es un producto o servicio dirigido a terceros: no existe registro de usuarios, ni cuentas
+      de otras personas conectadas, ni recogida de datos de nadie salvo del propio desarrollador.
+    </p>
+  </section>
+
+  <section>
+    <h2>Qué hace</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Estadísticas de cuenta y de vídeo</strong> — lectura de métricas de rendimiento
+          (visitas, seguidores, interacción) de las cuentas propias, para un informe de seguimiento
+          interno.</li>
+        <li><strong>Gestión de contenido</strong> — subida de clips cortos (resúmenes de sesiones de
+          DJ ya grabadas) como contenido, siempre revisados manualmente antes de su publicación en
+          abierto.</li>
+        <li><strong>Sin acceso de terceros</strong> — la autenticación se realiza directamente contra
+          la cuenta de TikTok del propio desarrollador mediante el flujo oficial de OAuth de TikTok;
+          no hay paneles públicos ni credenciales propias de la aplicación.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Sobre el proyecto Kuradorr</h2>
+    <p>
+      Kuradorr es el alias de DJ de Juan A., que publica sesiones de techno, trance y EDM de forma
+      quincenal en YouTube, Instagram, TikTok, Hearthis.at, Mixcloud, SoundCloud y Spotify.
+    </p>
+    <div class="meta">
+      <span>YouTube: <b><a href="https://youtube.com/@kuradorr" target="_blank" rel="noopener">@kuradorr</a></b></span>
+      <span>Instagram: <b><a href="https://instagram.com/kuradorr" target="_blank" rel="noopener">@kuradorr</a></b></span>
+      <span>TikTok: <b><a href="https://tiktok.com/@kuradorr" target="_blank" rel="noopener">@kuradorr</a></b></span>
+      <span>Enlaces: <b><a href="https://linktr.ee/kuradorr" target="_blank" rel="noopener">linktr.ee/kuradorr</a></b></span>
+    </div>
+  </section>
+
+  <footer>
+    Kuradorr Content Manager — herramienta interna de uso personal.
+    <div class="links">
+      <a href="../#privacidad">Política de Privacidad</a>
+      <a href="../#terminos">Términos de Servicio</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
