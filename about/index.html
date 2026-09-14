@@ -50,9 +50,80 @@
   footer a{ color:var(--text-dim); }
   footer .links{ margin-top:0.5rem; }
   footer .links a{ margin-right:1.2rem; }
+
+  /* ---------- Top bar ---------- */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:0.85rem 1.5rem;
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  flex-wrap:wrap;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+  font-family:"Archivo",sans-serif;
+  font-weight:700;
+  font-size:0.95rem;
+  letter-spacing:0.02em;
+}
+.brand .dot{
+  width:9px;height:9px;border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+  flex:none;
+}
+.brand small{
+  display:block;
+  font-family:"JetBrains Mono","IBM Plex Mono",monospace;
+  font-weight:400;
+  font-size:0.68rem;
+  letter-spacing:0.08em;
+  color:var(--text-faint);
+  text-transform:uppercase;
+}
+.tabs{
+  display:flex;
+  gap:0.35rem;
+  font-family:"JetBrains Mono","IBM Plex Mono",monospace;
+  font-size:0.75rem;
+  letter-spacing:0.04em;
+}
+.tabs a{
+  color:var(--text-dim);
+  text-decoration:none;
+  padding:0.4rem 0.75rem;
+  border-radius:5px;
+  border:1px solid transparent;
+  transition:border-color .15s, color .15s, background .15s;
+}
+.tabs a:hover{ color:var(--text); border-color:var(--border); background:var(--panel-raised); }
+
 </style>
 </head>
 <body>
+<div class="topbar">
+  <div class="brand">
+    <span class="dot"></span>
+    <div>
+      Kuradorr Content Manager
+      <small>Documentación legal de la app</small>
+    </div>
+  </div>
+  <nav class="tabs">
+    <a href="https://jacure.github.io/kuradorr-legal/about/">Sobre la Herramienta</a>
+    <a href="https://jacure.github.io/kuradorr-legal/#privacidad">Política de Privacidad</a>
+    <a href="https://jacure.github.io/kuradorr-legal/#terminos">Términos de Servicio</a>
+  </nav>
+</div>
 <div class="wrap">
 
   <header>
